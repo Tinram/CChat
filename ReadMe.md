@@ -33,7 +33,7 @@ Run */install.php* through your server (which, if you have root MySQL access, sh
 
 ### Operation
 
-** Fields **
+**Fields**
 
 1. message display
 2. your name
