@@ -26,9 +26,9 @@ The Blowfish block cipher is simple, strong, and fast.  Its speed is ideal for J
 
 ### Setup
 
-Configure /install.php configuration details - username and password etc.
-Configure /classes/cchat.class.php constants to be identical.
-Run install.php through your server (which, if you have root MySQL access, should mean setup is now complete and CChat's index.php now displays without connection errors via server access).
+Configure */install.php* configuration details - username and password etc.
+Configure */classes/cchat.class.php* constants to be identical.
+Run */install.php* through your server (which, if you have root MySQL access, should mean setup is now complete and CChat's */index.php* now displays without connection errors via server access).
 
 
 ### Operation
