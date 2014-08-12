@@ -3,7 +3,7 @@
 
 ## Purpose
 
-Lightweight encrypted chatbox using Javascript, PHP and MySQLi, with an emphasis on speed and mimimalism.
+Lightweight encrypted chatbox using Javascript, PHP and MySQLi, with an emphasis on speed and minimalism.
 
 
 ## Password
