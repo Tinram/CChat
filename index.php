@@ -2,6 +2,8 @@
 
 require('classes/cchat.class.php');
 
+date_default_timezone_set('Europe/London');
+
 ?><!DOCTYPE html>
 
 <html lang="en">
