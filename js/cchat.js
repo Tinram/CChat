@@ -2,10 +2,13 @@
 var Chatbox = {
 
 	/**
+	* Crypto Chatbox.
+	*
 	* @author            Martin Latter <copysense.co.uk>
-	* @copyright         2010 (base), 2013 (encrypted)
-	* @version           2.00
-	* @license           GPL v.3
+	* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
+	* @version           2.01
+	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
+	* @link              https://github.com/Tinram/cchat.git
 	*/
 
 
@@ -17,7 +20,7 @@ var Chatbox = {
 	sErrorBackground: "#ffcc66",
 	sDefaultBackground: "background:linear-gradient(to bottom, #fff, #f0f8ff 100%);",
 	bDebug: false,
-	/******/
+	/** **** **/
 
 	sBR: "<br>",
 	reLB: /\~/g, // line break symbol used
@@ -26,17 +29,22 @@ var Chatbox = {
 
 
 	/**
-	* setup event handlers
+	* Setup event handlers.
 	*/
 
 	loader: function() {
 
 		document.getElementById("name").onclick = function() {
+
 			this.value = "";
 		};
 
 		document.getElementById("message").onclick = function() {
-			if (this.value === this.defaultValue) {this.value = "";}
+
+			if (this.value === this.defaultValue) {
+				this.value = "";
+			}
+
 			Chatbox.charCounter();
 		};
 
@@ -45,6 +53,7 @@ var Chatbox = {
 			if (Chatbox.checkBlankSubmission()) { // if fn returns true, proceed with submission
 
 				if (Chatbox.bSubmit) {
+
 					Chatbox.bSubmit = false;
 					Chatbox.checkUpdates(Chatbox.createUpdateObj(), "chatbox");
 				}
@@ -62,17 +71,19 @@ var Chatbox = {
 
 
 	/**
-	* chatbox field scroll handler
+	* Chatbox field scroll handler.
 	*/
 
 	scrollDown: function() {
 
-		document.getElementById("chatbox").scrollTop = 2000; // arbitrary value to scroll
+		var oCB = document.getElementById("chatbox");
+		oCB.scrollTop = oCB.scrollHeight; // fix for lost position
 	},
 
 
 	/**
-	* check user input 
+	* Check user input.
+	*
 	* @return   boolean
 	*/
 
@@ -121,7 +132,7 @@ var Chatbox = {
 
 
 	/**
-	* report and constrain character limit in message field
+	* Report and constrain character limit in message field.
 	*/
 
 	charCounter: function() {
@@ -143,7 +154,8 @@ var Chatbox = {
 
 
 	/**
-	* filter certain characters, hash password, encrypt message
+	* Filter certain characters, hash password, and encrypt message.
+	*
 	* @return   object
 	*/
 
@@ -166,7 +178,7 @@ var Chatbox = {
 
 
 	/**
-	* check password field
+	* Check password field.
 	*/
 
 	checkPass: function() {
@@ -208,9 +220,10 @@ var Chatbox = {
 
 
 	/**
-	* check for new messages on server using AJAX
-	* @param    object oPostData, string sDiv 
-	* @return   null
+	* Check for new messages on the server using POST AJAX.
+	*
+	* @param    object oPostData
+	* @param    string sDiv
 	*/
 
 	checkUpdates: function(oPostData, sDiv) {
@@ -269,12 +282,14 @@ var Chatbox = {
 								if (document.getElementById("pw").value === "") {
 
 									oCb.innerHTML += oResponse[i].n + ": " + oResponse[i].m + Chatbox.sBR;
+									Chatbox.scrollDown();
 								}
 								else {
 
 									sDMessage = Bf.d(SHA256(document.getElementById("pw").value), oResponse[i].m);
 									sDMessage = sDMessage.replace(Chatbox.reLB, Chatbox.sBR);
 									oCb.innerHTML += oResponse[i].n + ": " + sDMessage + Chatbox.sBR; // responsible for intermittent duplicate message bug
+									Chatbox.scrollDown();
 								}
 
 								sCb = oCb.innerHTML;
@@ -305,6 +320,7 @@ var Chatbox = {
 				else {
 
 					if (Chatbox.bDebug) {
+
 						alert("An error occurred: " + oXmlHttp.statusText);
 					}
 				}

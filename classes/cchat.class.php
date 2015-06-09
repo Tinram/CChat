@@ -3,12 +3,13 @@
 class Chatbox {
 
 	/**
-	* Crypto Chatbox
+	* Crypto Chatbox.
 	*
 	* @author            Martin Latter <copysense.co.uk>
-	* @copyright         Martin Latter, Sep 2013
-	* @version           2.00
-	* @license           GPL v.3
+	* @copyright         Martin Latter, September 2013
+	* @version           2.01
+	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
+	* @link              https://github.com/Tinram/cchat.git
 	*/
 
 
@@ -28,10 +29,11 @@ class Chatbox {
 
 
 	/**
-	* connecto to database
+	* Connect to the database.
+	*
 	* @return   database object
-	*/	
-	
+	*/
+
 	private static function getConnection() {
 
 		$oConnection = new mysqli('localhost', self::DB_USERNAME, self::DB_PASSWORD, self::DB_NAME);
@@ -47,7 +49,8 @@ class Chatbox {
 
 
 	/**
-	* output chatbox message
+	* Output chatbox message.
+	*
 	* @return   string
 	*/
 
@@ -83,7 +86,8 @@ class Chatbox {
 
 
 	/**
-	* check for new chatbox message
+	* Check for new chatbox message.
+	*
 	* @return   string
 	*/
 
@@ -104,7 +108,7 @@ class Chatbox {
 			$rResults = $oConn->query($sQuery);
 			$aResults = $rResults->fetch_row();
 
-			if (!$aResults) { # no new messages
+			if ( ! $aResults) { # no new messages
 
 				$a = array('id' => $sID, 'n' => '', 'm' => '');
 				$sOutput .= '[' . json_encode($a) . ']';
@@ -157,13 +161,14 @@ class Chatbox {
 
 
 	/**
-	* add a chatbox message to database
+	* Add a chatbox message to database.
+	*
 	* @return   string (if successful)
 	*/
 
 	public static function addMessage() {
 
-		if (!isset($_POST['n'])) {
+		if ( ! isset($_POST['n'])) {
 
 			return '';
 		}
@@ -214,8 +219,11 @@ class Chatbox {
 
 
 	/**
-	* sanitize string for database input
-	* @param    string $sExt, external string to be sanitized; object $oConn, database connection
+	* Sanitize string for database input.
+	*
+	* @param    string $sExt, external string to be sanitized
+	* @param    object $oConn, database connection
+	*
 	* @return   string
 	*/
 
