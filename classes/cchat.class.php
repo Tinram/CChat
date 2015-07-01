@@ -3,13 +3,13 @@
 class Chatbox {
 
 	/**
-	* Crypto Chatbox.
-	*
-	* @author            Martin Latter <copysense.co.uk>
-	* @copyright         Martin Latter, September 2013
-	* @version           2.01
-	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
-	* @link              https://github.com/Tinram/cchat.git
+		* Crypto Chatbox.
+		*
+		* @author            Martin Latter <copysense.co.uk>
+		* @copyright         Martin Latter, September 2013
+		* @version           2.01
+		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
+		* @link              https://github.com/Tinram/cchat.git
 	*/
 
 
@@ -29,9 +29,9 @@ class Chatbox {
 
 
 	/**
-	* Connect to the database.
-	*
-	* @return   database object
+		* Connect to the database.
+		*
+		* @return   database object
 	*/
 
 	private static function getConnection() {
@@ -49,9 +49,9 @@ class Chatbox {
 
 
 	/**
-	* Output chatbox message.
-	*
-	* @return   string
+		* Output chatbox message.
+		*
+		* @return   string
 	*/
 
 	public static function outputMessages() {
@@ -86,9 +86,9 @@ class Chatbox {
 
 
 	/**
-	* Check for new chatbox message.
-	*
-	* @return   string
+		* Check for new chatbox message.
+		*
+		* @return   string
 	*/
 
 	public static function checkForUpdate() {
@@ -161,9 +161,9 @@ class Chatbox {
 
 
 	/**
-	* Add a chatbox message to database.
-	*
-	* @return   string (if successful)
+		* Add a chatbox message to database.
+		*
+		* @return   string (if successful)
 	*/
 
 	public static function addMessage() {
@@ -219,12 +219,12 @@ class Chatbox {
 
 
 	/**
-	* Sanitize string for database input.
-	*
-	* @param    string $sExt, external string to be sanitized
-	* @param    object $oConn, database connection
-	*
-	* @return   string
+		* Sanitize string for database input.
+		*
+		* @param    string $sExt, external string to be sanitized
+		* @param    object $oConn, database connection
+		*
+		* @return   string
 	*/
 
 	private static function dbSafe($sExt, mysqli &$oConn) {

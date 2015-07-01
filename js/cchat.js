@@ -2,25 +2,28 @@
 var Chatbox = {
 
 	/**
-	* Crypto Chatbox.
-	*
-	* @author            Martin Latter <copysense.co.uk>
-	* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
-	* @version           2.01
-	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
-	* @link              https://github.com/Tinram/cchat.git
+		* Crypto Chatbox.
+		*
+		* @author            Martin Latter <copysense.co.uk>
+		* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
+		* @version           2.01
+		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
+		* @link              https://github.com/Tinram/cchat.git
 	*/
 
 
-	/* CONFIG */
-	iCheckFreq: 6000, // 6-sec checks
+	/* CONFIGURATION */
+
+	iCheckFreq: 6000, // 6-second checks
 	sFilePath: "includes/",
 	sCheckFile: "check.php",
 	sUpdateFile: "update.php",
 	sErrorBackground: "#ffcc66",
 	sDefaultBackground: "background:linear-gradient(to bottom, #fff, #f0f8ff 100%);",
 	bDebug: false,
-	/** **** **/
+
+	/* END CONFIGURATION */
+
 
 	sBR: "<br>",
 	reLB: /\~/g, // line break symbol used
@@ -29,7 +32,7 @@ var Chatbox = {
 
 
 	/**
-	* Setup event handlers.
+		* Setup event handlers.
 	*/
 
 	loader: function() {
@@ -71,7 +74,7 @@ var Chatbox = {
 
 
 	/**
-	* Chatbox field scroll handler.
+		* Chatbox field scroll handler.
 	*/
 
 	scrollDown: function() {
@@ -82,9 +85,9 @@ var Chatbox = {
 
 
 	/**
-	* Check user input.
-	*
-	* @return   boolean
+		* Check user input.
+		*
+		* @return   boolean
 	*/
 
 	checkBlankSubmission: function() {
@@ -132,7 +135,7 @@ var Chatbox = {
 
 
 	/**
-	* Report and constrain character limit in message field.
+		* Report and constrain character limit in message field.
 	*/
 
 	charCounter: function() {
@@ -154,9 +157,9 @@ var Chatbox = {
 
 
 	/**
-	* Filter certain characters, hash password, and encrypt message.
-	*
-	* @return   object
+		* Filter certain characters, hash password, and encrypt message.
+		*
+		* @return   object
 	*/
 
 	createUpdateObj: function() {
@@ -178,7 +181,7 @@ var Chatbox = {
 
 
 	/**
-	* Check password field.
+		* Check password field.
 	*/
 
 	checkPass: function() {
@@ -220,10 +223,10 @@ var Chatbox = {
 
 
 	/**
-	* Check for new messages on the server using POST AJAX.
-	*
-	* @param    object oPostData
-	* @param    string sDiv
+		* Check for new messages on the server using POST AJAX.
+		*
+		* @param    object oPostData
+		* @param    string sDiv
 	*/
 
 	checkUpdates: function(oPostData, sDiv) {

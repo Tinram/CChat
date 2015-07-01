@@ -6,7 +6,7 @@ CREATE TABLE `chatbox` (
 
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(15) NOT NULL,
-	`message` VARCHAR(384) NOT NULL, # 255 = ~352 bytes of base64
+	`message` VARCHAR(384) NOT NULL, -- 255 = ~352 bytes of base64
 	`date` INT(10) UNSIGNED NOT NULL,
 	KEY `kdate` (`date`),
 	PRIMARY KEY (`id`)

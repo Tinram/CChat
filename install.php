@@ -1,13 +1,14 @@
 <?php
 
 /**
-* very simple install script to setup the database for CChat
-* define your constants in configuration section below, then load this via your web server, or via cmd line: php -f install.php
-*
-* @author            Martin Latter <copysense.co.uk>
-* @copyright         29/06/2014
-* @version           0.02
-* @license           GPL v.3
+	* Very simple install script to setup the database for CChat.
+	* Define your constants in the configuration section below, then load this via your web server, or via the command-line: php -f install.php
+	*
+	* @author            Martin Latter <copysense.co.uk>
+	* @copyright         29/06/2014
+	* @version           0.02
+	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
+	* @link              https://github.com/Tinram/cchat.git
 */
 
 
