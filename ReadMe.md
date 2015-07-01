@@ -13,8 +13,8 @@ Uses a previously agreed password with the recipient, avoiding any initial key e
 
 ## Features
 
-+ Lightweight (45kB)
-+ All data encrypted by the browser's JavaScript
++ Lightweight (45kB).
++ All data encrypted by the browser's JavaScript.
 + POST AJAX used to avoid GET data being recorded in server logs.
 + Coded to PHP 5.3 and legacy JavaScript event handlers for maximum server-client compatibility. 
 
@@ -60,7 +60,8 @@ Unicode character encoding is not possible with the present JavaScript Blowfish 
 
 #### Known Bugs
 
-Intermittent duplicate message bug (refresh page and it disappears), line 291 */js/cchat.js*
+Intermittent duplicate message bug (refresh page and it disappears), line 294 */js/cchat.js*
+
 Some intermittent line break character removal between Windows and Linux browser instances.
 
 
