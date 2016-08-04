@@ -7,7 +7,7 @@ class Chatbox {
 		*
 		* @author            Martin Latter <copysense.co.uk>
 		* @copyright         Martin Latter, September 2013
-		* @version           2.01
+		* @version           2.02
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 		* @link              https://github.com/Tinram/cchat.git
 	*/
@@ -15,6 +15,7 @@ class Chatbox {
 
 	const
 
+		DB_HOST = 'localhost',
 		DB_NAME = 'cchat',
 		DB_TABLE = 'chatbox',
 		DB_USERNAME = 'messenger',
@@ -36,7 +37,7 @@ class Chatbox {
 
 	private static function getConnection() {
 
-		$oConnection = new mysqli('localhost', self::DB_USERNAME, self::DB_PASSWORD, self::DB_NAME);
+		$oConnection = new mysqli(self::DB_HOST, self::DB_USERNAME, self::DB_PASSWORD, self::DB_NAME);
 
 		if ($oConnection->connect_errno) {
 

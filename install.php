@@ -6,7 +6,7 @@
 	*
 	* @author            Martin Latter <copysense.co.uk>
 	* @copyright         29/06/2014
-	* @version           0.02
+	* @version           0.03
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 	* @link              https://github.com/Tinram/cchat.git
 */
@@ -14,12 +14,14 @@
 
 /* CONFIGURATION */
 
-define('ROOT_PASSWORD', 'root-pass');
-
 define('APP_USERNAME', 'messenger');
 define('APP_PASSWORD', 'password');
 define('APP_NAME', 'CChat');
 
+define('SUPER_USER', 'root');
+define('SUPER_USER_PASSWORD', 'root_password');
+
+define('HOST', 'localhost');
 define('DATABASE', 'cchat');
 define('TABLE', 'chatbox');
 
@@ -29,7 +31,7 @@ define('COLLATION', 'latin1_general_ci');
 /* END CONFIGURATION */
 
 
-$oConnection = new mysqli('localhost', 'root', ROOT_PASSWORD);
+$oConnection = new mysqli(HOST, SUPER_USER, SUPER_USER_PASSWORD);
 
 if ($oConnection->connect_errno) {
 	die('Database connection failed: ' . $oConnection->connect_errno . ') ' . $oConnection->connect_error);

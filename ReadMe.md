@@ -16,19 +16,19 @@ Uses a previously agreed password with the recipient, avoiding any initial key e
 + Lightweight (45kB).
 + All data encrypted by the browser's JavaScript.
 + POST AJAX used to avoid GET data being recorded in server logs.
-+ Coded to PHP 5.3 and legacy JavaScript event handlers for maximum server-client compatibility. 
++ Coded to PHP 5.3 and legacy JavaScript event handlers for maximum server-client compatibility.
 
 
 ## Encryption
 
-SHA256-hashed key, Blowfish cipher (base64 display is an overlay of binary-encrypted data), messages stored encrypted in the database.  
+SHA256-hashed key, Blowfish cipher (base64 display is an overlay of binary-encrypted data), messages stored encrypted in the database.
 The Blowfish block cipher is simple, strong, and fast.  Its speed is ideal for JavaScript implementation.
 
 
 ### Setup
 
 1. Configure */install.php* configuration details - username and password etc.
-2. Configure */classes/cchat.class.php* constants to be identical.  
+2. Configure */classes/cchat.class.php* constants to be identical.
 3. Run */install.php* through your server (which, if you have root MySQL access, should mean setup is now complete and CChat's */index.php* now displays without connection errors via server access).  
 4. Alter the timezone ( date_default_timezone_set('Europe/London') ), if required, in index.php
 
@@ -63,6 +63,11 @@ Unicode character encoding is not possible with the present JavaScript Blowfish 
 Intermittent duplicate message bug (refresh page and it disappears), line 294 */js/cchat.js*
 
 Some intermittent line break character removal between Windows and Linux browser instances.
+
+
+#### Revision Credits
+
+Matthew of JS Classes.
 
 
 #### Dedication
