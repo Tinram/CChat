@@ -6,7 +6,7 @@ var Chatbox = {
 		*
 		* @author            Martin Latter <copysense.co.uk>
 		* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
-		* @version           2.02
+		* @version           2.03
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 		* @link              https://github.com/Tinram/cchat.git
 	*/

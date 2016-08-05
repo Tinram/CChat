@@ -7,7 +7,7 @@ class Chatbox {
 		*
 		* @author            Martin Latter <copysense.co.uk>
 		* @copyright         Martin Latter, September 2013
-		* @version           2.02
+		* @version           2.03
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 		* @link              https://github.com/Tinram/cchat.git
 	*/
@@ -93,6 +93,11 @@ class Chatbox {
 	*/
 
 	public static function checkForUpdate() {
+
+		if ( ! isset($_POST['id'])) {
+
+			exit;
+		}
 
 		$sOutput = '';
 		$sTemp = '';
