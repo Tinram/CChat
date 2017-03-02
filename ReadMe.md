@@ -15,14 +15,14 @@ Uses a previously agreed password with the recipient, avoiding any initial key e
 
 + Lightweight (45kB).
 + All data encrypted by the browser's JavaScript.
-+ POST AJAX used to avoid GET data being recorded in server logs.
++ POST AJAX used (GET AJAX data would be recorded in server logs).
 + Coded to PHP 5.3 and using legacy JavaScript event handlers for maximum server-client compatibility.
 
 
 ## Encryption
 
 + SHA-256-hashed key.
-+ Blowfish cipher in CBC-mode (base64 display is an overlay on binary-encrypted data).
++ Blowfish cipher in CBC-mode (base64 display overlays binary-encrypted data).
 + Messages stored encrypted in the database.
 
 The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for JavaScript implementation.
@@ -38,12 +38,12 @@ The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for Ja
 
 ## Operation
 
-**Fields**
+### Fields:
 
-1. message display
-2. your name
-3. your password (use a strong password, previously agreed, to share messages with a recipient)
-4. your message
+1. **message display**
+2. **your name**
+3. **your password** (use a strong password, previously agreed, to share messages with a recipient)
+4. **your message**
 
 The *decrypt* button will decrypt existing encrypted messages in field 1, if the correct password is present in field 2.
 
@@ -59,19 +59,18 @@ The AJAX polling is 6 seconds between server checks for new messages (change the
 The last hour's messages are displayed in field 1 (change the `MESSAGE_BUFFER` constant */classes/cchat.class.php* (line 24)).
 
 
-### Limitations
+### Character Set Limitation
 
 Unicode character encoding is unfortunately not possible with the present JavaScript Blowfish cipher encryption (the reason the database remains as latin1 encoding).
 
 
 ### Known Bugs
 
-Intermittent duplicate message bug (refresh page and it disappears): */js/cchat.js* (line 294).
+1. Intermittent duplicate message bug (refresh page and it disappears): */js/cchat.js* (line 294).
+2. Some intermittent line break character removal when using Linux and Windows browser clients together.
 
-Some intermittent line break character removal between Windows and Linux browser instances.
 
-
-### Credits
+## Credits
 
 + Nils Reimers for the Blowfish cipher in JavaScript.
 + Angel Marin and Paul Johnston for the SHA-256 hash function in JavaScript.
@@ -81,16 +80,16 @@ Some intermittent line break character removal between Windows and Linux browser
 
 ### Dedications
 
-1. To God (I narrowly escaped death in 1992).
-2. To Sofia.
++ To God (I narrowly escaped death in 1992).
++ To Sofia.
 
 
-### License
+## License
 
 CChat is released under the [GPL v.3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 
-#### Miscellaneous
+### Miscellaneous
 
 ![alt](http://www.jsclasses.org/award/innovation/winner.png "JS Classes Innovation Award")
 
