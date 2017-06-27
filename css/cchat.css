@@ -6,22 +6,23 @@ body {margin:0.8em;}
 
 noscript p {width:203px; margin:0 0 10px 0; color:#c00; font-size:0.8em;}
 
-div#chatboxcontainer {font:0.75em verdana,arial,helvetica,freesans,sans-serif; width:226px;}
-div#title {font:9px arial,helvetica,freesans,sans-serif;}
+div#chatboxcontainer {font:0.75em verdana,arial,helvetica,freesans,sans-serif; width:225px;}
+div#title {font:9px arial,helvetica,freesans,sans-serif; margin-bottom:1px;}
 div#chatbox {width:203px; height:203px; margin-bottom:8px; padding:10px 10px 0 10px; overflow:auto;}
 div#error {clear:both; font-size:0.9em; color:#c00; padding-top:8px; min-height:18px;}
 div#chatboxinput input {display:block;}
-div#remcharcontainer {font-size:0.8em; color:#ccc; margin-bottom:3px;}
+div#remcharcontainer {font-size:0.8em; color:#ccc; margin:1px 0 4px 0;}
 
 input::-moz-focus-inner {border:0;}
-input#name, input#pw, input#email {width:220px; margin-bottom:5px;}
-input#name, input#pw, input#email, textarea#message, input#chatsubmit, input#decrypt {padding:2px;}
-input#chatsubmit {margin-bottom:3px; float:left;}
-input#decrypt {margin-bottom:3px; float:right;}
+input#name, input#pw, input#email {width:219px; margin-bottom:5px;}
+input#name, input#pw, input#email, textarea#message {padding:2px;}
+input#chatsubmit, input#decrypt {margin-bottom:3px; padding:2px 6px;}
+input#chatsubmit {float:left;}
+input#decrypt {float:right;}
 input#chatsubmit:hover, input#decrypt:hover {cursor:pointer; background:#390; color:#fff;}
 
-textarea#message {font:1em verdana,arial,helvetica,freesans,sans-serif; width:220px; height:100px; overflow:auto;} /* change to font:1.1em for Linux */
+textarea#message {font:1em verdana,arial,helvetica,freesans,sans-serif; width:219px; height:100px; overflow:auto;} /* change to font:1.1em for Linux */
 
-/* input#name, input#pw, input#chatsubmit, input#decrypt {font-size:1.0em;} */ /* uncomment for Linux */
+/* input#name, input#pw, input#chatsubmit, input#decrypt {font-size:1.0em;} */ /* uncomment for old Linux browsers */
 
 .curved {border:1px solid #39f; border-radius:7px; background:linear-gradient(to bottom, #fff, #f0f8ff 100%); /* also defined in /js/cchat.js */}
