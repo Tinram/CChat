@@ -6,7 +6,7 @@ var Chatbox = {
 		*
 		* @author            Martin Latter <copysense.co.uk>
 		* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
-		* @version           2.03
+		* @version           2.04
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 		* @link              https://github.com/Tinram/cchat.git
 	*/
@@ -37,16 +37,7 @@ var Chatbox = {
 
 	loader: function() {
 
-		document.getElementById("name").onclick = function() {
-
-			this.value = "";
-		};
-
 		document.getElementById("message").onclick = function() {
-
-			if (this.value === this.defaultValue) {
-				this.value = "";
-			}
 
 			Chatbox.charCounter();
 		};

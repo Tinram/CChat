@@ -7,6 +7,7 @@ date_default_timezone_set('Europe/London');
 ?><!DOCTYPE html>
 
 <html lang="en">
+
 	<head>
 		<title>CChat</title>
 		<meta charset="iso-8859-1">
@@ -38,9 +39,9 @@ date_default_timezone_set('Europe/London');
 			</div>
 
 			<div id="chatboxinput">
-				<input type="text" id="name" name="name" maxlength="15" value="name" title= "your name" class="curved">
-				<input type="password" id="pw" maxlength="30" title="enter password" class="curved">
-				<textarea id="message" name="message" maxlength="255" cols="26" rows="7" class="curved">message</textarea>
+				<input type="text" id="name" name="name" maxlength="15" placeholder="name" class="curved">
+				<input type="password" id="pw" maxlength="30" placeholder="password" class="curved">
+				<textarea id="message" name="message" maxlength="255" cols="26" rows="7" placeholder="message" class="curved"></textarea>
 				<div id="remcharcontainer"><span id="remchar">255</span> chars remaining</div>
 				<div>
 					<input type="button" id="chatsubmit" value="chat" class="curved">
