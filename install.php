@@ -1,13 +1,13 @@
 <?php
 
 /**
-	* Very simple install script to setup the database for CChat.
+	* Very simple install script to set-up the database for CChat.
 	* Define your constants in the configuration section below, then load this file via your web server
 	* (or via the command-line: php -f install.php).
 	*
 	* @author            Martin Latter <copysense.co.uk>
 	* @copyright         29/06/2014
-	* @version           0.04
+	* @version           0.05
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 	* @link              https://github.com/Tinram/cchat.git
 */
@@ -49,7 +49,7 @@ else {
 		echo '<h2>' . $sTitle . '</h2>';
 	}
 	else {
-		echo $sTitle . "\n";
+		echo $sTitle . LINE_BREAK . LINE_BREAK;
 	}
 
 	# create database
@@ -112,6 +112,11 @@ else {
 	# flush
 	$sQuery = 'FLUSH PRIVILEGES';
 	$rResults = $oConnection->query($sQuery);
+
+	#  if run in browser, display link to CChat
+	if (PHP_SAPI !== 'cli') {
+		echo LINE_BREAK . '<a href="./index.php">' . APP_NAME . '</a>';
+	}
 
 	# close connection
 	$oConnection->close();
