@@ -3,7 +3,11 @@
 
 ## Purpose
 
-Lightweight end-to-end encrypted chatbox using JavaScript, PHP, and MySQLi, with an emphasis on speed and minimalism.
+Lightweight end-to-end encrypted chatbox using JavaScript, PHP, and MySQL, with an emphasis on speed and minimalism.
+
+
+[1]: https://tinram.github.io/images/cchat.png
+![cchat][1]
 
 
 ## Password
@@ -30,8 +34,8 @@ The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for Ja
 
 ## Set-up
 
-1. Configure */install.php* (line 17) configuration section details: username, passwords, database etc.
-2. Configure */classes/cchat.class.php* (line 18) constants to be identical to those in */install.php*
+1. Configure */install.php* (line 18 onwards) configuration section details: username, passwords, database etc.
+2. Configure */classes/cchat.class.php* (line 18 onwards) constants to be identical to those in */install.php*
 3. Run */install.php* through your server (which, if you have root MySQL access, should mean set-up is now complete and CChat's */index.php* now displays in a browser without connection errors to the server).
 4. Alter the timezone if required: */index.php* (line 5): `date_default_timezone_set('Europe/London')`
 
@@ -54,7 +58,7 @@ A page refresh (encrypted messages displayed) or the wrong password will result 
 
 ### Default Timings
 
-The AJAX polling is 6 seconds between server checks for new messages (change the `iCheckFreq` variable */js/cchat.js* (line 17)).
+The AJAX polling is 6 seconds between server checks for new messages (change the `iCheckFreq` variable (in microseconds) */js/cchat.js* (line 17)).
 
 The last hour's messages are displayed in field 1 (change the `MESSAGE_BUFFER` constant */classes/cchat.class.php* (line 24)).
 
@@ -93,4 +97,4 @@ CChat is released under the [GPL v.3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ![alt](http://www.jsclasses.org/award/innovation/winner.png "JS Classes Innovation Award")
 
-Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016] (http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).
+Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016](http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).
