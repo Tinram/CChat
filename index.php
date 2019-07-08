@@ -17,8 +17,8 @@ date_default_timezone_set('Europe/London');
 
 		<link type="text/css" href="css/cchat.css" rel="stylesheet" media="all">
 
-		<script type="text/javaScript" src="js/cchat.js"></script>
-		<script type="text/javaScript" src="js/bf.js"></script>
+		<script type="text/javascript" src="js/cchat.js"></script>
+		<script type="text/javascript" src="js/bf.js"></script>
 	</head>
 
 	<body>

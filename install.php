@@ -1,9 +1,9 @@
 <?php
 
 /**
-	* Very simple install script to set-up the database for CChat.
-	* Define your constants in the configuration section below, then load this file via your web server
-	* (or via the command-line: php -f install.php).
+	* Very simple install script to set-up the MySQL database for CChat.
+	* Edit the constants in the configuration section below, then load this file via your web server
+	* (or via the command-line: php install.php).
 	*
 	* @author            Martin Latter <copysense.co.uk>
 	* @copyright         29/06/2014
