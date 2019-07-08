@@ -1,10 +1,7 @@
 
 # CChat
 
-## Purpose
-
-Lightweight end-to-end encrypted chatbox using JavaScript, PHP, and MySQL, with an emphasis on speed and minimalism.
-
+#### Lightweight end-to-end encrypted chatbox using JavaScript, PHP, and MySQL, with an emphasis on speed and minimalism.
 
 [1]: https://tinram.github.io/images/cchat.png
 ![cchat][1]
@@ -34,10 +31,13 @@ The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for Ja
 
 ## Set-up
 
-1. Configure */install.php* (line 18 onwards) configuration section details: username, passwords, database etc.
-2. Configure */classes/cchat.class.php* (line 18 onwards) constants to be identical to those in */install.php*
-3. Run */install.php* through your server (which, if you have root MySQL access, should mean set-up is now complete and CChat's */index.php* now displays in a browser without connection errors to the server).
-4. Alter the timezone if required: */index.php* (line 5): `date_default_timezone_set('Europe/London')`
+1. Clone the repository / extract the file archive into a suitable directory in the server's web directory.
+2. On *nix servers, set appropriate file ownership on this directory.
+3. Edit the configuration section details in */install.php* (line 18 onwards): username, passwords, database, host etc.
+4. Edit the constants in */classes/cchat.class.php* (line 18 onwards) to be identical to those in */install.php*
+5. Run */install.php* through your server (which, if you have root MySQL access, should mean set-up is complete ...
+6. View CChat's */index.php* in a browser, which if *install.php* ran correctly, should display without connection errors to the server.
+7. Alter the timezone if required: */index.php* (line 5): `date_default_timezone_set('Europe/London')`
 
 
 ## Operation
