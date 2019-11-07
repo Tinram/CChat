@@ -1,7 +1,7 @@
 
 # CChat
 
-#### Lightweight end-to-end encrypted chatbox using JavaScript, PHP, and MySQL, with an emphasis on speed and minimalism.
+#### Lightweight end-to-end encrypted chatbox, with an emphasis on speed and minimalism.
 
 [1]: https://tinram.github.io/images/cchat.png
 ![cchat][1]
@@ -16,6 +16,7 @@ Uses a previously agreed password with the recipient, avoiding any initial key e
 
 + Lightweight (45kB).
 + All data encrypted by the browser's JavaScript.
++ Uses only PHP, MySQL, and JavaScript.
 + POST AJAX used (GET AJAX data would be recorded in server logs).
 + Coded to PHP 5.3 and using legacy JavaScript event handlers for maximum server-client compatibility.
 
@@ -31,13 +32,34 @@ The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for Ja
 
 ## Set-up
 
-1. Clone the repository / extract the file archive into a suitable directory in the server's web directory.
-2. On *nix servers, set appropriate file ownership on this directory.
-3. Edit the configuration section details in */install.php* (line 18 onwards): username, passwords, database, host etc.
-4. Edit the constants in */classes/cchat.class.php* (line 18 onwards) to be identical to those in */install.php*
-5. Run */install.php* through your server (which, if you have root MySQL access, should mean set-up is complete ...
-6. View CChat's */index.php* in a browser, which if *install.php* ran correctly, should display without connection errors to the server.
-7. Alter the timezone if required: */index.php* (line 5): `date_default_timezone_set('Europe/London')`
+1. Clone the repository (or extract the ZIP archive) into a suitable directory in the server's web directory  
+e.g.
+
+    `cd /var/www/html`
+
+    `sudo git clone https://github.com/Tinram/CChat.git`
+
+2. On Linux/BSD servers, set appropriate file ownership / permissions  
+e.g. for Debian-based distros, Apache is *www-data*:
+
+    `sudo chown -R www-data:<your_user_name> CChat/`
+
+    `cd CChat`
+
+    `sudo chmod 664 install.php classes/cchat.class.php`
+
+3. Edit the configuration section details in *install.php* (line 18 onwards): username, passwords, database, host etc.
+4. Edit the relevant constants in */classes/cchat.class.php* (line 18 onwards) to conform to the credentials used in *install.php*
+5. Run *install.php* through the server (which, if you have root MySQL access, should mean set-up is complete):
+
+    `http://localhost/CChat/install.php`
+
+6. View CChat's *index.php* in a browser, which if *install.php* ran correctly, should display without connection errors to the server, and display *init: test* as the first message.
+
+    `http://localhost/CChat/`
+
+7. Alter the timezone if required: *index.php* (line 5):  
+`date_default_timezone_set('Europe/London')`
 
 
 ## Operation
@@ -49,11 +71,11 @@ The Blowfish block cipher is simple, strong, and fast. Its speed is ideal for Ja
 3. **your password** (use a strong password, previously agreed, to share messages with a recipient)
 4. **your message**
 
-The *decrypt* button will decrypt existing encrypted messages in field 1, if the correct password is present in field 2.
+The *decrypt* button will decrypt existing encrypted messages in *field 1*, if the correct password is present in *field 2*.
 
-Enter your name in field 2, password in field 3, and a message in field 4, then click the *chat* button.
+Enter your name in *field 2*, password in *field 3*, and a message in *field 4*, then click the *chat* button.
 
-A page refresh (encrypted messages displayed) or the wrong password will result in gibberish displayed in field 1.
+A page refresh (encrypted messages displayed) or the wrong password will result in gibberish displayed in *field 1*.
 
 
 ### Default Timings
@@ -76,8 +98,8 @@ Unicode character encoding is unfortunately not possible with the present JavaSc
 
 ## Credits
 
-+ Nils Reimers for the Blowfish cipher in JavaScript.
-+ Angel Marin and Paul Johnston for the SHA-256 hash function in JavaScript.
++ Nils Reimers for the Blowfish cipher implementation in JavaScript.
++ Angel Marin and Paul Johnston for the SHA-256 hash function implementation in JavaScript.
 + Matthew of JS Classes for testing / revision suggestions.
 + Karl, who asked me to create a 'shoutbox' in 2010.
 
