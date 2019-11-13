@@ -1,22 +1,22 @@
 <?php
 
 /**
-	* Very simple install script to set-up the MySQL database for CChat.
-	* Edit the constants in the configuration section below, then load this file via your web server
+	* Simple install script to set-up the MySQL database and database user for CChat.
+	* Edit the constants in the configuration section below, then load this file via a web server
 	* (or via the command-line: php install.php).
 	*
-	* @author            Martin Latter <copysense.co.uk>
+	* @author            Martin Latter
 	* @copyright         29/06/2014
-	* @version           0.05
+	* @version           0.06
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
-	* @link              https://github.com/Tinram/cchat.git
+	* @link              https://github.com/Tinram/CChat.git
 */
 
 
 /* CONFIGURATION */
 
 define('APP_USERNAME', 'messenger');
-define('APP_PASSWORD', 'password');
+define('APP_PASSWORD', 'P@55w0rd');
 define('APP_NAME', 'CChat');
 
 define('SUPER_USER', 'root');
@@ -95,18 +95,72 @@ else {
 		echo 'Created first ' . APP_NAME . ' message.' . LINE_BREAK;
 	}
 	else {
-		die('ERROR: could not create the required first message.' . LINE_BREAK);
+		die('ERROR: could not create the first message.' . LINE_BREAK);
 	}
 
-	# create grants to cchat user
-	$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO ' . APP_USERNAME . '@localhost IDENTIFIED BY "' . APP_PASSWORD . '"';
+	# create CChat user, avoiding errors if user was previously created
+	$sQuery = 'CREATE USER IF NOT EXISTS ' . APP_USERNAME . '@localhost';
 	$rResults = $oConnection->query($sQuery);
 
 	if ($rResults) {
-		echo 'Created ' . APP_NAME . ' database user.' . LINE_BREAK;
+
+		echo 'Created ' . APP_NAME . ' database user (' . APP_USERNAME . ').' . LINE_BREAK;
+
+		# create CChat user password
+		$sQuery = 'SET PASSWORD FOR ' . APP_USERNAME . '@localhost = ' . '"' . APP_PASSWORD . '"';
+		$rResults = $oConnection->query($sQuery);
+
+		if ($rResults) {
+			echo 'Created ' . APP_NAME . ' database user password.' . LINE_BREAK;
+		}
+		else {
+			die('ERROR: could not create database user password (check password complexity requirements).' . LINE_BREAK);
+		}
+
+		# create CChat user permissions
+		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO ' . APP_USERNAME . '@localhost';
+		$rResults = $oConnection->query($sQuery);
+
+		if ($rResults) {
+			echo 'Created database user permissions.' . LINE_BREAK;
+		}
+		else {
+			die('ERROR: could not create ' . APP_NAME . ' database user (' . APP_USERNAME . ') permissions.' . LINE_BREAK);
+		}
 	}
 	else {
-		die('ERROR: could not create the required ' . APP_NAME . ' database user.' . LINE_BREAK);
+
+		echo 'Could not create ' . APP_NAME . ' database user (' . APP_USERNAME . ') with method 1' . LINE_BREAK;
+		echo 'trying method 2 ...' . LINE_BREAK;
+
+		# for password requirements blocking
+		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO ' . APP_USERNAME . '@localhost IDENTIFIED BY "' . APP_PASSWORD . '"';
+		$rResults = $oConnection->query($sQuery);
+
+		if ($rResults) {
+			echo 'Created ' . APP_NAME . ' database user (' . APP_USERNAME . ') and permissions.' . LINE_BREAK;
+		}
+		else {
+			die('ERROR: could not create the ' . APP_NAME . ' database user.' . LINE_BREAK);
+		}
+	}
+
+	# circumvent MySQL 8's sha256_password default authentication
+	# this is just to get CChat operational on MySQL 8, and is best replaced with caching_sha2_password authentication ASAP
+	$sQuery = 'SELECT VERSION()';
+	$rResults = $oConnection->query($sQuery);
+	$aVersion = $rResults->fetch_row()[0];
+
+	if (substr($aVersion, 0, 1) === '8') {
+
+		$sQuery = 'ALTER USER ' . APP_USERNAME . '@localhost IDENTIFIED WITH mysql_native_password BY "' . APP_PASSWORD . '"';
+		$rResults = $oConnection->query($sQuery);
+		if ($rResults) {
+			echo 'Bypassed MySQL 8 sha256_password authentication.' . LINE_BREAK;
+		}
+		else {
+			die('ERROR: could not bypass MySQL 8 sha256_password authentication.' . LINE_BREAK);
+		}
 	}
 
 	# flush

@@ -5,11 +5,11 @@ class Chatbox {
 	/**
 		* Crypto Chatbox.
 		*
-		* @author            Martin Latter <copysense.co.uk>
+		* @author            Martin Latter
 		* @copyright         Martin Latter, September 2013
-		* @version           2.03
+		* @version           2.04
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
-		* @link              https://github.com/Tinram/cchat.git
+		* @link              https://github.com/Tinram/CChat.git
 	*/
 
 
@@ -19,7 +19,7 @@ class Chatbox {
 		DB_NAME = 'cchat',
 		DB_TABLE = 'chatbox',
 		DB_USERNAME = 'messenger',
-		DB_PASSWORD = 'password',
+		DB_PASSWORD = 'P@55w0rd',
 
 		MESSAGE_BUFFER = 3600, # 1 hour of messages displayed
 
@@ -236,9 +236,7 @@ class Chatbox {
 	private static function dbSafe($sExt, mysqli &$oConn) {
 
 		return $oConn->real_escape_string(strip_tags(stripslashes(trim($sExt))));
-
-	} # end dbSafe()
-
-} # end Chatbox {}
+	}
+}
 
 ?>

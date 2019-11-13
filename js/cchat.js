@@ -4,11 +4,11 @@ var Chatbox = {
 	/**
 		* Crypto Chatbox.
 		*
-		* @author            Martin Latter <copysense.co.uk>
+		* @author            Martin Latter
 		* @copyright         Martin Latter, 2010 (original), 2013 (encrypted)
 		* @version           2.04
 		* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
-		* @link              https://github.com/Tinram/cchat.git
+		* @link              https://github.com/Tinram/CChat.git
 	*/
 
 
