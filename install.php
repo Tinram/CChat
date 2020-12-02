@@ -3,11 +3,11 @@
 /**
 	* Simple install script to set-up the MySQL database and database user for CChat.
 	* Edit the constants in the configuration section below, then load this file via a web server
-	* (or via the command-line: php install.php).
+	* or execute on command-line: php install.php
 	*
 	* @author            Martin Latter
 	* @copyright         29/06/2014
-	* @version           0.07
+	* @version           0.08
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 	* @link              https://github.com/Tinram/CChat.git
 */
@@ -38,17 +38,20 @@ define('LINE_BREAK', (PHP_SAPI !== 'cli') ? '<br>' : "\n");
 
 $oConnection = new mysqli(HOST, SUPER_USER, SUPER_USER_PASSWORD);
 
-if ($oConnection->connect_errno) {
+if ($oConnection->connect_errno)
+{
 	die('Database connection failed: ' . $oConnection->connect_errno . ') ' . $oConnection->connect_error . LINE_BREAK);
 }
-else {
-
+else
+{
 	$sTitle = APP_NAME . ' Database Setup';
 
-	if (PHP_SAPI !== 'cli') {
+	if (PHP_SAPI !== 'cli')
+	{
 		echo '<h2>' . $sTitle . '</h2>';
 	}
-	else {
+	else
+	{
 		echo $sTitle . LINE_BREAK . LINE_BREAK;
 	}
 
@@ -56,10 +59,12 @@ else {
 	$sQuery = 'CREATE DATABASE IF NOT EXISTS ' . DATABASE . ' CHARACTER SET ' . CHARSET . ' COLLATE ' . COLLATION;
 	$rResults = $oConnection->query($sQuery);
 
-	if ($rResults) {
+	if ($rResults)
+	{
 		echo 'Created database ' . DATABASE . '.' . LINE_BREAK;
 	}
-	else {
+	else
+	{
 		die('ERROR: could not create the ' . DATABASE . ' database.' . LINE_BREAK);
 	}
 
@@ -81,10 +86,12 @@ else {
 
 	$rResults = $oConnection->query($sQuery);
 
-	if ($rResults) {
+	if ($rResults)
+	{
 		echo 'Created table ' . TABLE . '.' . LINE_BREAK;
 	}
-	else {
+	else
+	{
 		die('ERROR: could not create the ' . TABLE . ' table.' . LINE_BREAK);
 	}
 
@@ -92,10 +99,12 @@ else {
 	$sQuery = 'INSERT INTO ' . DATABASE . '.' . TABLE . ' (name, message, date) VALUES("init", "test", UNIX_TIMESTAMP())';
 	$rResults = $oConnection->query($sQuery);
 
-	if ($rResults) {
+	if ($rResults)
+	{
 		echo 'Created first ' . APP_NAME . ' message.' . LINE_BREAK;
 	}
-	else {
+	else
+	{
 		die('ERROR: could not create the first message.' . LINE_BREAK);
 	}
 
@@ -103,9 +112,9 @@ else {
 	$sQuery = 'CREATE USER IF NOT EXISTS "' . APP_USERNAME . '"@"' . HOST . '"';
 	$rResults = $oConnection->query($sQuery);
 
-	if ($rResults) {
-
-		# MySQL 8
+	if ($rResults)
+	{
+		# MySQL 8 / user already exists on 5.x
 
 		echo 'Created ' . APP_NAME . ' database user (' . APP_USERNAME . ').' . LINE_BREAK;
 
@@ -113,10 +122,12 @@ else {
 		$sQuery = 'SET PASSWORD FOR "' . APP_USERNAME . '"@"' . HOST . '" = ' . '"' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
 
-		if ($rResults) {
+		if ($rResults)
+		{
 			echo 'Created ' . APP_NAME . ' database user password.' . LINE_BREAK;
 		}
-		else {
+		else
+		{
 			die('ERROR: could not create database user password (check password complexity requirements).' . LINE_BREAK);
 		}
 
@@ -124,15 +135,17 @@ else {
 		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO "' . APP_USERNAME . '"@"' . HOST . '"';
 		$rResults = $oConnection->query($sQuery);
 
-		if ($rResults) {
+		if ($rResults)
+		{
 			echo 'Created database user permissions.' . LINE_BREAK;
 		}
-		else {
+		else
+		{
 			die('ERROR: could not create ' . APP_NAME . ' database user (' . APP_USERNAME . ') permissions.' . LINE_BREAK);
 		}
 	}
-	else {
-
+	else
+	{
 		# MySQL 5.x
 
 		echo 'Could not create ' . APP_NAME . ' database user (' . APP_USERNAME . ') with method 1' . LINE_BREAK;
@@ -142,10 +155,12 @@ else {
 		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO "' . APP_USERNAME . '"@"' . HOST . '" IDENTIFIED BY "' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
 
-		if ($rResults) {
+		if ($rResults)
+		{
 			echo 'Created ' . APP_NAME . ' database user (' . APP_USERNAME . ') and permissions.' . LINE_BREAK;
 		}
-		else {
+		else
+		{
 			die('ERROR: could not create the ' . APP_NAME . ' database user.' . LINE_BREAK);
 		}
 	}
@@ -158,14 +173,16 @@ else {
 	$rResults = $oConnection->query($sQuery);
 	$aVersion = $rResults->fetch_row()[0];
 
-	if (substr($aVersion, 0, 1) === '8') {
-
+	if (substr($aVersion, 0, 1) === '8')
+	{
 		$sQuery = 'ALTER USER "' . APP_USERNAME . '"@"' . HOST . '" IDENTIFIED WITH mysql_native_password BY "' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
-		if ($rResults) {
+		if ($rResults)
+		{
 			echo 'Bypassed MySQL 8 sha256_password authentication.' . LINE_BREAK;
 		}
-		else {
+		else
+		{
 			die('ERROR: could not bypass MySQL 8 sha256_password authentication.' . LINE_BREAK);
 		}
 	}
@@ -175,12 +192,11 @@ else {
 	$rResults = $oConnection->query($sQuery);
 
 	#  if run in browser, display link to CChat
-	if (PHP_SAPI !== 'cli') {
+	if (PHP_SAPI !== 'cli')
+	{
 		echo LINE_BREAK . '<a href="./index.php">' . APP_NAME . '</a>';
 	}
 
 	# close connection
 	$oConnection->close();
 }
-
-?>
