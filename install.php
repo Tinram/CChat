@@ -7,7 +7,7 @@
 	*
 	* @author            Martin Latter
 	* @copyright         29/06/2014
-	* @version           0.06
+	* @version           0.07
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 	* @link              https://github.com/Tinram/CChat.git
 */
@@ -15,12 +15,12 @@
 
 /* CONFIGURATION */
 
+define('SUPER_USER', 'root');
+define('SUPER_USER_PASSWORD', '**root_password**');
+
 define('APP_USERNAME', 'messenger');
 define('APP_PASSWORD', 'P@55w0rd');
 define('APP_NAME', 'CChat');
-
-define('SUPER_USER', 'root');
-define('SUPER_USER_PASSWORD', '**root_password**');
 
 define('HOST', 'localhost');
 define('DATABASE', 'cchat');
@@ -69,7 +69,8 @@ else {
 
 	# create table
 	$sQuery = '
-		CREATE TABLE IF NOT EXISTS `' . TABLE . '` (
+		CREATE TABLE IF NOT EXISTS `' . TABLE . '`
+		(
 			`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 			`name` CHAR(15) NOT NULL,
 			`message` VARCHAR(384) NOT NULL,
@@ -99,15 +100,17 @@ else {
 	}
 
 	# create CChat user, avoiding errors if user was previously created
-	$sQuery = 'CREATE USER IF NOT EXISTS ' . APP_USERNAME . '@localhost';
+	$sQuery = 'CREATE USER IF NOT EXISTS "' . APP_USERNAME . '"@"' . HOST . '"';
 	$rResults = $oConnection->query($sQuery);
 
 	if ($rResults) {
 
+		# MySQL 8
+
 		echo 'Created ' . APP_NAME . ' database user (' . APP_USERNAME . ').' . LINE_BREAK;
 
 		# create CChat user password
-		$sQuery = 'SET PASSWORD FOR ' . APP_USERNAME . '@localhost = ' . '"' . APP_PASSWORD . '"';
+		$sQuery = 'SET PASSWORD FOR "' . APP_USERNAME . '"@"' . HOST . '" = ' . '"' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
 
 		if ($rResults) {
@@ -118,7 +121,7 @@ else {
 		}
 
 		# create CChat user permissions
-		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO ' . APP_USERNAME . '@localhost';
+		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO "' . APP_USERNAME . '"@"' . HOST . '"';
 		$rResults = $oConnection->query($sQuery);
 
 		if ($rResults) {
@@ -130,11 +133,13 @@ else {
 	}
 	else {
 
+		# MySQL 5.x
+
 		echo 'Could not create ' . APP_NAME . ' database user (' . APP_USERNAME . ') with method 1' . LINE_BREAK;
 		echo 'trying method 2 ...' . LINE_BREAK;
 
 		# for password requirements blocking
-		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO ' . APP_USERNAME . '@localhost IDENTIFIED BY "' . APP_PASSWORD . '"';
+		$sQuery = 'GRANT SELECT, INSERT ON ' . DATABASE . '.* TO "' . APP_USERNAME . '"@"' . HOST . '" IDENTIFIED BY "' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
 
 		if ($rResults) {
@@ -145,15 +150,17 @@ else {
 		}
 	}
 
-	# circumvent MySQL 8's sha256_password default authentication
-	# this is just to get CChat operational on MySQL 8, and is best replaced with caching_sha2_password authentication ASAP
+	/*
+		* Circumvent MySQL 8's sha256_password default authentication.
+		* This is just to get CChat operational on MySQL 8, and is best replaced with caching_sha2_password authentication ASAP.
+	*/
 	$sQuery = 'SELECT VERSION()';
 	$rResults = $oConnection->query($sQuery);
 	$aVersion = $rResults->fetch_row()[0];
 
 	if (substr($aVersion, 0, 1) === '8') {
 
-		$sQuery = 'ALTER USER ' . APP_USERNAME . '@localhost IDENTIFIED WITH mysql_native_password BY "' . APP_PASSWORD . '"';
+		$sQuery = 'ALTER USER "' . APP_USERNAME . '"@"' . HOST . '" IDENTIFIED WITH mysql_native_password BY "' . APP_PASSWORD . '"';
 		$rResults = $oConnection->query($sQuery);
 		if ($rResults) {
 			echo 'Bypassed MySQL 8 sha256_password authentication.' . LINE_BREAK;
