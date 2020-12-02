@@ -3,11 +3,11 @@
 /**
 	* Simple install script to set-up the MySQL database and database user for CChat.
 	* Edit the constants in the configuration section below, then load this file via a web server
-	* or execute on command-line: php install.php
+	* or execute on the command-line: php install.php
 	*
 	* @author            Martin Latter
 	* @copyright         29/06/2014
-	* @version           0.08
+	* @version           0.09
 	* @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 	* @link              https://github.com/Tinram/CChat.git
 */
@@ -38,9 +38,9 @@ define('LINE_BREAK', (PHP_SAPI !== 'cli') ? '<br>' : "\n");
 
 $oConnection = new mysqli(HOST, SUPER_USER, SUPER_USER_PASSWORD);
 
-if ($oConnection->connect_errno)
+if ($oConnection->connect_errno > 0)
 {
-	die('Database connection failed: ' . $oConnection->connect_errno . ') ' . $oConnection->connect_error . LINE_BREAK);
+	die('Database connection failed: (' . $oConnection->connect_errno . ') ' . $oConnection->connect_error . LINE_BREAK);
 }
 else
 {
