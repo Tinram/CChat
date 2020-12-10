@@ -1,7 +1,5 @@
 <?php
 
-require('../classes/cchat.class.php');
+require '../classes/cchat.class.php';
 
 echo Chatbox::addMessage();
-
-?>
