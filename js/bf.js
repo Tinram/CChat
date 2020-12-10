@@ -1,9 +1,9 @@
 
 /**
-	* Blowfish object literal for CChat
-	*
-	* @author            Nils Reimers, code condensed by Martin Latter
-	* @license           GPL v.3
+    * Blowfish object literal for CChat.
+    *
+    * @author            Nils Reimers, code condensed by Martin Latter
+    * @license           GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 */
 
 var Bf = {
