@@ -1,6 +1,8 @@
 <?php
 
-require('classes/cchat.class.php');
+declare(strict_types=1);
+
+require 'classes/cchat.class.php';
 
 date_default_timezone_set('Europe/London');
 
@@ -8,52 +10,50 @@ date_default_timezone_set('Europe/London');
 
 <html lang="en">
 
-	<head>
-		<title>CChat</title>
-		<meta charset="iso-8859-1">
-		<meta name="description" content="CChat ~ Cryptochat">
-		<meta name="author" content="Martin Latter">
-		<meta name="copyright" content="&copy; 2010-<?php echo date('Y'); ?> Martin Latter">
+    <head>
+        <meta charset="iso-8859-1">
+        <title>CChat</title>
+        <meta name="description" content="CChat ~ Cryptochat">
+        <meta name="author" content="Martin Latter">
+        <meta name="copyright" content="&copy; 2010-<?php echo date('Y'); ?> Martin Latter">
+        <link type="text/css" href="css/cchat.css" rel="stylesheet" media="all">
+        <script src="js/cchat.js"></script>
+        <script src="js/bf.js"></script>
+    </head>
 
-		<link type="text/css" href="css/cchat.css" rel="stylesheet" media="all">
+    <body>
 
-		<script type="text/javascript" src="js/cchat.js"></script>
-		<script type="text/javascript" src="js/bf.js"></script>
-	</head>
+        <div id="chatboxcontainer">
 
-	<body>
+            <noscript>
+                <p>Browser JavaScript must be enabled for CChat to operate.</p>
+            </noscript>
 
-		<div id="chatboxcontainer">
+            <div id="title">CryptoChat</div>
+            <div id="chatbox" class="curved">
 
-			<noscript>
-				<p>Browser JavaScript must be enabled for CChat to operate.</p>
-			</noscript>
+            <?php
+                echo Chatbox::outputMessages();
+            ?>
 
-			<div id="title">CryptoChat</div>
-			<div id="chatbox" class="curved">
+            </div>
 
-			<?php
-				echo Chatbox::outputMessages();
-			?>
+            <div id="chatboxinput">
+                <input type="text" id="name" name="name" maxlength="15" placeholder="name" class="curved">
+                <input type="password" id="pw" maxlength="30" placeholder="password" class="curved">
+                <textarea id="message" name="message" maxlength="255" cols="26" rows="7" placeholder="message" class="curved"></textarea>
+                <div id="remcharcontainer"><span id="remchar">255</span> chars remaining</div>
+                <div>
+                    <input type="button" id="chatsubmit" value="chat" class="curved">
+                    <input type="button" id="decrypt" value="decrypt" class="curved">
+                </div>
+                <div id="error"></div>
+            </div>
 
-			</div>
+            <div id="debug"></div>
 
-			<div id="chatboxinput">
-				<input type="text" id="name" name="name" maxlength="15" placeholder="name" class="curved">
-				<input type="password" id="pw" maxlength="30" placeholder="password" class="curved">
-				<textarea id="message" name="message" maxlength="255" cols="26" rows="7" placeholder="message" class="curved"></textarea>
-				<div id="remcharcontainer"><span id="remchar">255</span> chars remaining</div>
-				<div>
-					<input type="button" id="chatsubmit" value="chat" class="curved">
-					<input type="button" id="decrypt" value="decrypt" class="curved">
-				</div>
-				<div id="error"></div>
-			</div>
+        </div>
 
-			<div id="debug"></div>
-
-		</div>
-
-	</body>
+    </body>
 
 </html>
