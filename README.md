@@ -42,24 +42,30 @@ e.g.
 2. On Linux/BSD servers, set appropriate file ownership / permissions  
 e.g. for Debian-based distros, Apache is *www-data*:
 
-    `sudo chown -R www-data:<your_user_name> CChat/`
+    `sudo chown -R www-data:<username> CChat/`
 
     `cd CChat`
 
     `sudo chmod 664 install.php classes/cchat.class.php`
 
 3. Edit the configuration section details in *install.php* (line 18 onwards): username, passwords, database, host etc.
-4. Edit the relevant constants in */classes/cchat.class.php* (line 18 onwards) to conform to the credentials used in *install.php*
-5. Run *install.php* through the server (which, if you have root MySQL access, should mean set-up is complete):
+
+4. Edit the relevant constants in */classes/cchat.class.php* (line 19 onwards) to conform to the credentials used in *install.php*
+
+5. Execute *install.php* via the terminal: `php install.php`  
+or through the server:
 
     `http://localhost/CChat/install.php`
+
+     (which, if you have root MySQL access, should mean set-up is now complete)
 
 6. View CChat's *index.php* in a browser, which if *install.php* ran correctly, should display without connection errors to the server, and display *init: test* as the first message.
 
     `http://localhost/CChat/`
 
-7. Alter the timezone if required: *index.php* (line 5):  
-`date_default_timezone_set('Europe/London')`
+7. Alter the timezone if required: *index.php* (line 7):
+
+    `date_default_timezone_set('Europe/London');`
 
 
 ## Operation
@@ -80,19 +86,19 @@ A page refresh (encrypted messages displayed) or the wrong password will result 
 
 ### Default Timings
 
-The AJAX polling is 6 seconds between server checks for new messages (change the `iCheckFreq` variable (in microseconds) */js/cchat.js* (line 17)).
+The AJAX polling is 6 seconds between server checks for new messages (change the `iCheckFreq` variable (in microseconds) */js/cchat.js* (line 21)).
 
-The last hour's messages are displayed in field 1 (change the `MESSAGE_BUFFER` constant */classes/cchat.class.php* (line 24)).
+The last hour's messages are displayed in field 1 (change the `MESSAGE_BUFFER` constant */classes/cchat.class.php* (line 25)).
 
 
 ### Character Set Limitation
 
-Unicode character encoding is unfortunately not possible with the present JavaScript Blowfish cipher encryption (the reason the database remains as latin1 encoding).
+Unicode character encoding is unfortunately not possible with the present JavaScript Blowfish cipher encryption (the reason the database remains as *latin1* encoding).
 
 
 ### Known Bugs
 
-1. Intermittent duplicate message bug (refresh page and it disappears): */js/cchat.js* (line 294).
+1. Intermittent duplicate message bug (refresh page and it disappears): */js/cchat.js* (line 297).
 2. Some intermittent line break character removal when using Linux and Windows browser clients together.
 
 
@@ -115,8 +121,8 @@ Unicode character encoding is unfortunately not possible with the present JavaSc
 CChat is released under the [GPL v.3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 
-### Miscellaneous
+#### Miscellaneous
 
 ![alt](http://www.jsclasses.org/award/innovation/winner.png "JS Classes Innovation Award")
 
-Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016](http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).
+<small>Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016](http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).<small>
