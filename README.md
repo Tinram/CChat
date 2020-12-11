@@ -125,4 +125,4 @@ CChat is released under the [GPL v.3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ![alt](http://www.jsclasses.org/award/innovation/winner.png "JS Classes Innovation Award")
 
-<small>Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016](http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).<small>
+<small>Won a [JS Classes Innovation Award](http://www.jsclasses.org/award/innovation/) ([August 2016](http://www.jsclasses.org/package/513-JavaScript-Chat-system-that-exchanges-encrypted-messages.html)).</small>
